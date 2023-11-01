@@ -4,7 +4,7 @@ import torch
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 import numpy as np
-from model_lstm import *
+from model_gru import *
 from plotting import *
 
 """
@@ -110,12 +110,12 @@ if torch.cuda.is_available():
 learning_rate = 0.001
 epochs = 200
 input_dim = 3  # (t, x, y)
-hidden_dim = 64
-layer_dim = 3 # CASE 1 (H =1) CASE 02 (H = 2)
+hidden_dim = 128
+layer_dim = 1 # CASE 1 (H =1) CASE 02 (H = 2)
 output_dim = 1
 
 # Initialisation du modèle, de la fonction de coût et de l'optimiseur
-model = LSTMModel(input_dim, hidden_dim, layer_dim, output_dim)
+model = GRUModel(input_dim, hidden_dim, layer_dim, output_dim)
 
 # TRANSFERED LEARNING
 #model.load_state_dict(torch.load('model_path_case6.pth'))
@@ -204,7 +204,7 @@ print(Y_test.shape)
 #print(Y_test)
 
 """
-torch.save(model.state_dict(), 'model_path_case6.pth')
+torch.save(model.state_dict(), 'model_gru_net_case1.pth')
 
 
 # Supposons que 'data' est votre DataFrame et que 'temps' est la colonne contenant les temps
